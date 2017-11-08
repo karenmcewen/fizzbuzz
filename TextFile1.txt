@@ -1,0 +1,78 @@
+<html>
+    <head>
+    </head>
+    <body>
+        Maximum: <input type="number" id="max" value="100" />
+        <input type="button" id="go-fast" value="Go Fast" />
+        <input type="button" id="go-slow" value="Go Slow" />
+
+
+        <div id="output"></div> //this is HTML
+		
+
+        <script type="text/javascript">
+            document.getElementById('go-fast').onclick = fizzBuzzNow;//this is the actual function on the button
+            document.getElementById('go-slow').onclick = fizzBuzzSlow;
+            var output = document.getElementById('output'); //javascript referencing the HTML
+            function fizzBuzzNow() {
+                var max = getMax();
+                clearOutput();//clears what is already on the screen-down at bottom written by Kyle
+                output.innerHTML = fizzBuzz(1, max); 
+				//this actually does the function, builds a string, and prints the string to the screen
+            }
+
+            function fizzBuzz(start, stop) {
+                var result = ""; //empty string called result
+                for (var i = start; i <= stop; i++) {
+                    result = result + fizzBuzzOne(i) + "<br/>"; //creates a single long string
+                }
+                return result;
+            }
+
+            function fizzBuzzOne(number) {
+                if (isDivisibleBy(number, 15)) {
+                    return "FizzBuzz";
+                } else if (isDivisibleBy(number, 3)) {
+                    return "Fizz";
+                } else if (isDivisibleBy(number, 5)) {
+                    return "Buzz";
+                } else {
+                    return number + '';
+                }
+            }
+
+            function isDivisibleBy(number, multiple) {
+                return number % multiple === 0;
+            }
+            function fizzBuzzSlow() {
+                clearOutput();
+                var max = getMax();
+                var current = 0;
+                var intervalId = setInterval(function() {
+                    current++; 
+                    output.innerHTML = output.innerHTML + fizzBuzzOne(current) + "<br/>";
+                    if (current >= max) {
+                        clearInterval(intervalId);
+                    }
+                }, 500);
+            }
+            function clearOutput() {
+                document.getElementById('output').innerHTML = "";
+            }
+            function getMax() {
+                return document.getElementById("max").value;
+            }
+        </script>
+    </body>
+</html>
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
